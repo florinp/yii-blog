@@ -26,6 +26,10 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
+    const ROLE_ADMIN = "admin";
+    const ROLE_EDITOR = "editor";
+    const ROLE_SUBSCRIBER = "subscriber";
+
     /**
      * @inheritdoc
      */
@@ -131,6 +135,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function getAuthKey()
     {
         return $this->auth_key;
+    }
+
+    public function getPosts()
+    {
+        return $this->hasMany(Post::className(), ['userId' => 'id']);
     }
 
     /**
