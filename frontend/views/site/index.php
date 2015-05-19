@@ -1,51 +1,39 @@
 <?php
+/* @var $posts frontend\models\Post[] */
+/* @var $post frontend\models\Post */
 /* @var $this yii\web\View */
 $this->title = 'My Yii Application';
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+<?php if(count($posts)) { ?>
+    <?php foreach($posts as $post) { ?>
+        <div class="blog-post">
+            <h2 class="blog-post-title"><?=\yii\helpers\Html::a(\yii\helpers\Html::encode($post->title), ["/post/view", "slug" => $post->slug])?></h2>
+            <p class="blog-post-meta"><?=date("F j, Y")?> by <a href="#"><?=$post->user->username?></a></p>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+            <?=$post->getShortText()?>
+        </div><!-- /.blog-post -->
+    <?php } ?>
+    <nav>
+        <?php echo \yii\widgets\LinkPager::widget([
+            'pagination' => $pagination,
+            'options' => [
+                'tag' => 'nav',
+                'class' => 'pager'
+            ],
+            'nextPageLabel' => 'Next',
+            'prevPageLabel' => 'Previous',
+            'maxButtonCount' => 0,
+            'disabledPageCssClass' => '',
+            'nextPageCssClass' => '',
+            'prevPageCssClass' => '',
+            'linkOptions' => [
+                'tag' => 'span'
+            ]
+        ]); ?>
+    </nav>
+<?php } else { ?>
+    <div class="blog-post">
+        <h2>No data found</h2>
     </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
-</div>
+<?php } ?>

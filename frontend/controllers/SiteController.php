@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\Post;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -8,6 +9,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
+use yii\data\Pagination;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -40,12 +42,12 @@ class SiteController extends Controller
                     ],
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
+//            'verbs' => [
+//                'class' => VerbFilter::className(),
+//                'actions' => [
+//                    'logout' => ['post'],
+//                ],
+//            ],
         ];
     }
 
@@ -67,7 +69,22 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = Post::find();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 10,
+            'totalCount' => $query->count()
+        ]);
+
+        $posts = $query->orderBy('created_at DESC')
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return $this->render('index', [
+            'posts' => $posts,
+            'pagination' => $pagination
+        ]);
     }
 
     public function actionLogin()

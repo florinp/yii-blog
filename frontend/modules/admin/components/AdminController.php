@@ -5,7 +5,7 @@ namespace frontend\modules\admin\components;
 use Yii;
 use \yii\web\Controller;
 
-class AdminController extends Controller
+class   AdminController extends Controller
 {
 
     public function behaviors()

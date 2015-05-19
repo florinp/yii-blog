@@ -5,7 +5,9 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\VarDumper;
 use yii\web\IdentityInterface;
+use frontend\models\Post;
 
 /**
  * User model
@@ -140,6 +142,45 @@ class User extends ActiveRecord implements IdentityInterface
     public function getPosts()
     {
         return $this->hasMany(Post::className(), ['userId' => 'id']);
+    }
+
+    public function hasRole($role)
+    {
+        $auth = Yii::$app->authManager;
+        $userRoles = $auth->getRolesByUser($this->getId());
+        //VarDumper::dump($userRoles, 10, true);
+
+        $hasRole = false;
+
+        if(count($userRoles)) {
+            foreach($userRoles as $roleName => $roleObj) {
+                if($role === $roleName || $role === $roleObj->name) {
+                    $hasRole = true;
+                } else {
+                    continue;
+                }
+            }
+        } else {
+            return false;
+        }
+
+        return $hasRole;
+    }
+
+    public function getRoles()
+    {
+        $roles = [];
+
+        $auth = Yii::$app->authManager;
+        $userRoles = $auth->getRolesByUser($this->getId());
+
+        if(count($userRoles)) {
+            foreach($userRoles as $role) {
+                $roles[$role->name] = strtoupper($role->name);
+            }
+        }
+
+        return $roles;
     }
 
     /**

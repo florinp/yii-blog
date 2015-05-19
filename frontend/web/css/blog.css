@@ -46,11 +46,14 @@ h6, .h6 {
     position: relative;
     display: inline-block;
     padding: 10px;
+}
+.blog-nav-item a {
+    padding: 10px;
     font-weight: 500;
     color: #cdddeb;
 }
-.blog-nav-item:hover,
-.blog-nav-item:focus {
+.blog-nav-item a:hover,
+.blog-nav-item a:focus {
     color: #fff;
     text-decoration: none;
 }

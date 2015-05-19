@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1b76f255130cd7f5b04162c641a7418b",
+    "hash": "f7aca7b68ed2c7848d7b79e56817da77",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -370,6 +370,50 @@
                 "mailer"
             ],
             "time": "2015-03-14 06:06:39"
+        },
+        {
+            "name": "yiidoc/yii2-redactor",
+            "version": "2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiidoc/yii2-redactor.git",
+                "reference": "14eda872ecb63ec66c241833cfd506d3f0e61eb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiidoc/yii2-redactor/zipball/14eda872ecb63ec66c241833cfd506d3f0e61eb1",
+                "reference": "14eda872ecb63ec66c241833cfd506d3f0e61eb1",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii\\redactor\\": "/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nghia Nguyen",
+                    "email": "zinzinday@gmail.com"
+                }
+            ],
+            "description": "Extension redactor for Yii2 Framework.",
+            "keywords": [
+                "Redactor",
+                "extension",
+                "html editor",
+                "imperavi",
+                "wysiwyg",
+                "yii2"
+            ],
+            "time": "2015-05-13 19:40:10"
         },
         {
             "name": "yiisoft/yii2",

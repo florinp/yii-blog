@@ -17,4 +17,15 @@ class Admin extends Module
 
         $this->setLayoutPath(__DIR__."/views/layouts");
     }
+
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        Yii::$app->errorHandler->errorAction = "/admin/site/error";
+
+        return true; // or false to not run the action
+    }
 }

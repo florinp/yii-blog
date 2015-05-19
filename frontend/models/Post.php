@@ -4,6 +4,8 @@ namespace frontend\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
+use common\models\User;
 
 /**
  * This is the model class for table "post".
@@ -15,6 +17,7 @@ use yii\db\ActiveRecord;
  * @property string $text
  * @property integer $created_at
  * @property integer $updated_at
+ * @property User $user
  */
 class Post extends ActiveRecord
 {
@@ -53,6 +56,18 @@ class Post extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'userId']);
+    }
+
+    public function getShortText($limit = 250)
+    {
+        $text = $this->text;
+        if(strlen($text) > $limit) {
+            $text = substr($text, 0, $limit);
+            $text = trim($text);
+            return $text . '...';
+        } else {
+            return $text;
+        }
     }
 
     /**

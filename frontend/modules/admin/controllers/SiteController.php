@@ -8,7 +8,7 @@ use Yii;
 class SiteController extends AdminController
 {
 
-    public function behaviors()
+    /*public function behaviors()
     {
         return [
             'access' => [
@@ -19,6 +19,15 @@ class SiteController extends AdminController
                         'roles' => ['@'],
                     ],
                 ],
+            ],
+        ];
+    }*/
+
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
             ],
         ];
     }
