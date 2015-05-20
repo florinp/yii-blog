@@ -37,6 +37,11 @@ class CreateUserForm extends Model
         ];
     }
 
+
+    /**
+     * Creates a new user
+     * @return User|null
+     */
     public function create()
     {
 
@@ -68,6 +73,12 @@ class CreateUserForm extends Model
         return null;
     }
 
+    /**
+     * Updates a user
+     * @param $id user id
+     * @return User|null
+     * @throws HttpException when the user not exists
+     */
     public function update($id)
     {
         if($this->validate()) {

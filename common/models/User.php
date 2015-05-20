@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use frontend\models\Comment;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -142,6 +143,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function getPosts()
     {
         return $this->hasMany(Post::className(), ['userId' => 'id']);
+    }
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['userId' => 'id']);
     }
 
     public function hasRole($role)

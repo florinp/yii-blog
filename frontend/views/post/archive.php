@@ -9,7 +9,7 @@ $this->title = 'My Yii Application';
     <?php foreach($posts as $post) { ?>
         <div class="blog-post">
             <h2 class="blog-post-title"><?=\yii\helpers\Html::a(\yii\helpers\Html::encode($post->title), ["/post/view", "slug" => $post->slug])?></h2>
-            <p class="blog-post-meta"><?=date("F j, Y")?> by <a href="#"><?=$post->user->username?></a></p>
+            <p class="blog-post-meta"><?=date("F j, Y", $post->created_at)?> by <a href="#"><?=$post->user->username?></a></p>
 
             <?=$post->getShortText()?>
         </div><!-- /.blog-post -->

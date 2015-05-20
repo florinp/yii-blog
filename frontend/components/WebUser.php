@@ -9,6 +9,11 @@ use yii\web\HttpException;
 class WebUser extends \yii\web\User
 {
 
+    /**
+     * Checks if the user has a specific role
+     * @param string $role role name
+     * @return bool true if user has the role and false otherwise
+     */
     public function hasRole($role)
     {
         $auth = Yii::$app->authManager;
@@ -33,6 +38,11 @@ class WebUser extends \yii\web\User
     }
 
 
+    /**
+     * Get user model
+     * @return \common\models\User
+     * @throws HttpException when the model is not valid
+     */
     public function getModel()
     {
         $model = \common\models\User::findOne([

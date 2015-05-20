@@ -41,7 +41,9 @@ return [
 //                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 
                 'post/<slug>' => 'post/view',
-                'post/archive/<month>/<year>' => 'post/archive'
+                'post/archive/<month>/<year>' => 'post/archive',
+                'rate/post' => 'post/rate',
+                'admin/redactor/image' => 'redactor/upload/image'
             ]
         ]
     ],
@@ -50,7 +52,10 @@ return [
             'class' => 'frontend\modules\admin\Admin'
         ],
         'redactor' => [
-            'class' => 'yii\redactor\RedactorModule'
+            'class' => 'yii\redactor\RedactorModule',
+            'uploadDir' => dirname(__DIR__) . '/../media/images',
+            'uploadUrl' => '/static/images',
+            'imageAllowExtensions'=>['jpg','png','gif']
         ]
     ],
     'params' => $params,
