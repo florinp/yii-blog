@@ -14,6 +14,16 @@ deploying the application in different environments.
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-advanced/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
 [![Build Status](https://travis-ci.org/yiisoft/yii2-app-advanced.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-advanced)
 
+
+SETUP
+-------------------
+
+```sh
+$ ./init
+$ ./yii migrate --migrationPath=@yii/rbac/migrations
+$ ./yii migrate
+```
+
 DIRECTORY STRUCTURE
 -------------------
 
